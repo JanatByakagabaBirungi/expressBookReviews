@@ -98,4 +98,44 @@ public_users.get('/review/:isbn', function (req, res) {
 
 module.exports.general = public_users;
 
-module.exports.general = public_users;
+// Task 10: Get the list of books available in the shop using async-await with Axios
+const getAllBooks = async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/');
+    console.log("Task 10 - All Books:", response.data);
+  } catch (error) {
+    console.error("Error fetching all books:", error);
+  }
+};
+
+// Task 11: Get book details based on ISBN using Promise callbacks with Axios
+const getBookByISBN = (isbn) => {
+  axios.get(`http://localhost:5000/isbn/${isbn}`)
+    .then(response => {
+      console.log(`Task 11 - Book with ISBN ${isbn}:`, response.data);
+    })
+    .catch(error => {
+      console.error("Error fetching book by ISBN:", error);
+    });
+};
+
+// Task 12: Get book details based on Author using async-await with Axios
+const getBookByAuthor = async (author) => {
+  try {
+    const response = await axios.get(`http://localhost:5000/author/${author}`);
+    console.log(`Task 12 - Books by ${author}:`, response.data);
+  } catch (error) {
+    console.error("Error fetching books by author:", error);
+  }
+};
+
+// Task 13: Get book details based on Title using Promise callbacks with Axios
+const getBookByTitle = (title) => {
+  axios.get(`http://localhost:5000/title/${title}`)
+    .then(response => {
+      console.log(`Task 13 - Books with title ${title}:`, response.data);
+    })
+    .catch(error => {
+      console.error("Error fetching book by title:", error);
+    });
+};
